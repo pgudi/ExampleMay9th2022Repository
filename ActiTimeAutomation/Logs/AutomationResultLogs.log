@@ -1,0 +1,16 @@
+2022-08-14 10:51:33,986 DEBUG c.s.a.s.ActiTimeStepDefinition [main] Launch the application
+2022-08-14 10:51:38,410 DEBUG c.s.a.s.ActiTimeStepDefinition [main] The Application has launched successfully
+2022-08-14 10:51:38,429 INFO c.s.a.s.ActiTimeStepDefinition [main] Navigate to the url of the application
+2022-08-14 10:51:45,449 INFO c.s.a.s.ActiTimeStepDefinition [main] Navigate to the url of the application has performed successfully
+2022-08-14 10:51:45,461 INFO c.s.a.s.ActiTimeStepDefinition [main] Login using valid credentials
+2022-08-14 10:51:50,737 INFO c.s.a.s.ActiTimeStepDefinition [main] Login using valid credentials by providing valid credentails
+2022-08-14 10:51:50,739 INFO c.s.a.s.ActiTimeStepDefinition [main] the Home page should display
+2022-08-14 10:51:52,761 INFO c.s.a.s.ActiTimeStepDefinition [main] The Validation of Display of Home Page has matched successfulyy
+2022-08-14 10:51:52,761 INFO c.s.a.s.ActiTimeStepDefinition [main] minimize the flyout Window
+2022-08-14 10:51:54,838 INFO c.s.a.s.ActiTimeStepDefinition [main] minimize the flyout Window has performed successfully
+2022-08-14 10:51:54,842 INFO c.s.a.s.ActiTimeStepDefinition [main] Perform logout action
+2022-08-14 10:51:57,123 INFO c.s.a.s.ActiTimeStepDefinition [main] Performing logout action has done successfully
+2022-08-14 10:51:57,125 INFO c.s.a.s.ActiTimeStepDefinition [main] the login page should display
+2022-08-14 10:51:59,153 INFO c.s.a.s.ActiTimeStepDefinition [main] Validation of login page display
+2022-08-14 10:51:59,155 INFO c.s.a.s.ActiTimeStepDefinition [main] Close Application Browser
+2022-08-14 10:51:59,306 INFO c.s.a.s.ActiTimeStepDefinition [main] Close Application has done succesfully

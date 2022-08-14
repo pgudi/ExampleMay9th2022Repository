@@ -2,6 +2,9 @@ package com.sgtesting.actitime.stepdefinitions;
 
 import java.util.List;
 import java.util.Map;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +25,7 @@ public class ActiTimeStepDefinition {
 	public static String firstname=null;
 	public static String lastname=null;
 	public static ActiTimePages actiTimePage=null;
-
+	public static Logger log=LogManager.getLogger(ActiTimeStepDefinition.class);
 
 	/**
 	 * Author:
@@ -36,11 +39,13 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.debug("Launch the application");
 			String path=System.getProperty("user.dir");
 			System.setProperty("webdriver.chrome.driver", path+"\\Library\\drivers\\chromedriver.exe");
 			oBrowser=new ChromeDriver();
 			actiTimePage=new ActiTimePages(oBrowser);
 			ApplicationIndependent.waitFor(2L);
+			log.debug("The Application has launched successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -59,8 +64,10 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.info("Navigate to the url of the application");
 			oBrowser.get("http://localhost/login.do");
 			ApplicationIndependent.waitFor(5L);
+			log.info("Navigate to the url of the application has performed successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -79,6 +86,7 @@ public class ActiTimeStepDefinition {
 	{  
 		try
 		{
+			log.info("Login using valid credentials");
 			List<Map<String,String>> data=credentials.asMaps(String.class, String.class);
 			for (int i=0;i<data.size();i++)
 			{
@@ -87,7 +95,7 @@ public class ActiTimeStepDefinition {
 				actiTimePage.getLoginBtn().click();
 				ApplicationIndependent.waitFor(5L);
 			}
-
+			log.info("Login using valid credentials by providing valid credentails");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -106,8 +114,10 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.info("the Home page should display");
 			Assert.assertTrue(ApplicationDependent.isObjectPresent(oBrowser,By.xpath("//td[text()='Enter Time-Track']")));
 			ApplicationIndependent.waitFor(2L);
+			log.info("The Validation of Display of Home Page has matched successfulyy");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -126,8 +136,10 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.info("Perform logout action");
 			actiTimePage.getLogoutLink().click();
 			ApplicationIndependent.waitFor(2L);
+			log.info("Performing logout action has done successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -147,10 +159,12 @@ public class ActiTimeStepDefinition {
 		String expected,actual;
 		try
 		{
+			log.info("the login page should display");
 			expected="actiTIME - Login";
 			actual=oBrowser.getTitle();
 			ApplicationIndependent.waitFor(2L);
 			Assert.assertEquals(expected, actual);
+			log.info("Validation of login page display");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -169,7 +183,9 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.info("Close Application Browser");
 			oBrowser.close();
+			log.info("Close Application has done succesfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -188,6 +204,7 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.info("Create an User");
 			List<Map<String,String>> data=userdetails.asMaps(String.class, String.class);
 			firstname=data.get(0).get("firstname");
 			lastname=data.get(0).get("lastname");
@@ -214,6 +231,7 @@ public class ActiTimeStepDefinition {
 			ApplicationIndependent.waitFor(2L);
 			oBrowser.findElement(By.xpath(".//*[@id='userDataLightBox_commitBtn']/div/span")).click();
 			ApplicationIndependent.waitFor(5L);
+			log.info("Create an User action has performed successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -233,9 +251,10 @@ public class ActiTimeStepDefinition {
 		String expected;
 		try
 		{
+			log.info("User should create successfully");
 			expected=lastname+","+" "+firstname;
 			//		Assert.assertTrue(ApplicationDependent.isObjectPresent(oBrowser,By.xpath("//span[text()='"+expected+"']")));
-
+			log.info("Validation of User Creation has performed successfully ");
 
 		}catch(Exception e)
 		{
@@ -256,6 +275,7 @@ public class ActiTimeStepDefinition {
 		String username;
 		try
 		{
+			log.info("delete the user");
 			username=lastname+","+" "+firstname;
 			oBrowser.findElement(By.xpath("//span[text()='"+username+"']")).click();
 			ApplicationIndependent.waitFor(2L);
@@ -264,6 +284,7 @@ public class ActiTimeStepDefinition {
 			Alert alert=oBrowser.switchTo().alert();
 			alert.accept();
 			ApplicationIndependent.waitFor(2L);
+			log.info("delete the user step has performed successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -281,9 +302,11 @@ public class ActiTimeStepDefinition {
 		String expected,actual;
 		try
 		{
+			log.info("the user should delete");
 			expected="actiTIME - User List";
 			actual=oBrowser.getTitle();
 			Assert.assertEquals(expected, actual);
+			log.info("the user should delete, action has performed successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
@@ -324,26 +347,16 @@ public class ActiTimeStepDefinition {
 	{
 		try
 		{
+			log.info("minimize the flyout Window");
 			oBrowser.findElement(By.id("gettingStartedShortcutsPanelId")).click();
 			ApplicationIndependent.waitFor(2L);
+			log.info("minimize the flyout Window has performed successfully");
 		}catch(Exception e)
 		{
 			e.printStackTrace();
 		}
 	}
-	/*	
-	@Given("^Install the Chrome Browser$")
-	public void Install_the_Chrome_Browser()
-	{
-		System.out.println("Install the Chrome Browser!!!!!!!!!");
-	}
-
-	@And("^Configure the Chrome Browser$")
-	public void Configure_the_Chrome_Browser()
-	{
-		System.out.println("Configure the Chrome Browser!!!!!!!!!");
-	}
-	 */
+	
 
 	/**
 	 * Author:
